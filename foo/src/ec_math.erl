@@ -6,8 +6,10 @@
 -export([op/3]).
 
 %% @doc math function
--spec(op(atom(),number(),number()) -> number()).
+-spec(op(add|sub,number(),number()) -> number()).
 op(add, A, B) ->
 	A + B;
-op(sub, A, B) ->
-	A - B.
+op(sub, A, B) when A >= B ->
+	A - B;
+op(sub, A, B) when A < B ->
+	error.
