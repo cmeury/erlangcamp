@@ -1,5 +1,7 @@
 -module(ec_yourmap).
 -export([yourmap/2]).
 
-yourmap(Fun, L) ->
-	lists:map(Fun, L).
+yourmap(Fun, [H|T]) ->
+	[Fun(H)| yourmap(Fun, T)];
+yourmap(Fun, []) ->
+	[].
